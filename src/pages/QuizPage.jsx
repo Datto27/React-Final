@@ -52,7 +52,6 @@ function QuizPage() {
   const nextQuestion = () => {
     const nextQuestion = number + 1;
     if (nextQuestion > 10) {
-      console.log(history, {username: username, age: parseInt(query.age), score, date: new Date().toString()})
       if (history) {
         localStorage.setItem('history', JSON.stringify([...history, {username: username, age: parseInt(query.age), score, date: new Date().toString()}]))
       } else {
