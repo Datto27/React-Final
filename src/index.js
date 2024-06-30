@@ -1,13 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import './index.scss';
 import reportWebVitals from './reportWebVitals';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import QuizPage from './pages/QuizPage';
+import WelcomePage from './pages/WelcomePage';
+import ResultPage from './pages/ResultPage';
+import HistoryPage from './pages/HistoryPage';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <WelcomePage />,
+  },
+  {
+    path: '/quiz/:username',
+    element: <QuizPage />,
+  },
+  {
+    path: '/result/:username/:score',
+    element: <ResultPage />,
+  },
+  {
+    path: '/history',
+    element: <HistoryPage />,
+  }
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
