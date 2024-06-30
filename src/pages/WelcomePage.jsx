@@ -1,8 +1,8 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useState } from "react";
+import React from "react";
 import * as yup from "yup";
 import { categories } from "../constants/categories";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function WelcomePage() {
   const navigate = useNavigate();
@@ -25,7 +25,6 @@ function WelcomePage() {
   });
 
   const handleSubmit = (values) => {
-    console.log(values)
     return navigate(`/quiz/${values.username}?age=${values.age};category=${values.category};difficulty=${values.difficulty}`)
   };
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 export const useShuffle = (array) => {
@@ -6,15 +6,24 @@ export const useShuffle = (array) => {
 }
 
 export const useLocalStorage = (key) => {
-  let localValue = localStorage.getItem(key);
-  const [value, setValue] = useState(JSON.parse(localValue) ?? null);
+  const localValue = useRef(null);
+  const [value, setValue] = useState([]);
 
   useEffect(() => {
-    let newValue = JSON.stringify(value);
-    if (localValue !== newValue) {
+    fetchLocalValue();
+  }, [key]);
+
+  useEffect(() => {
+    if (value.length !== 0 && localValue.current?.length !== value?.length) {
       localStorage.setItem(key, JSON.stringify(value));
     }
   }, [key, value]);
+
+  const fetchLocalValue = async () => {
+    let json = localStorage.getItem('history');
+    localValue.current = await JSON.parse(json);
+    setValue(localValue.current);
+  }
 
   return [value, setValue];
 }
@@ -32,13 +41,7 @@ export const useQueryParams = () => {
   return obj;
 }
 
-export const currentDate = () => {
-  const date = new Date();
-  return `${date.getMinutes()}:${date.getHours()} - ${date.getDate()}/${date.getMonth()}`
-}
-
 export const formatDate = (ds) => {
   const date = new Date(ds);
-  console.log({ds, date})
   return `${date.getHours()}:${date.getMinutes()} - ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
 }

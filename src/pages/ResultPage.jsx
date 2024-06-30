@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 function ResultPage() {
   const params = useParams();
   const navigate = useNavigate();
-
   
   return (
     <div className="page">

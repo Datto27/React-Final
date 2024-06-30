@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { fetchQuizQuestions } from '../api/quiz';
 import QuestionCard from '../components/QuestionCard';
-import { currentDate, useCurrentDate, useLocalStorage, useQueryParams } from '../hooks/CustomHooks';
+import { useLocalStorage, useQueryParams } from '../hooks/CustomHooks';
 import LoadingAnimaton from '../components/LoadinAnimation';
 
 function QuizPage() {
@@ -19,7 +18,7 @@ function QuizPage() {
   const [history, setHistory] = useLocalStorage('history');
 
   useEffect(() => {
-    if (questions.length === 0) {
+    if (questions?.length === 0) {
       setIsLoading(true);
       fetchQuizQuestions({category: query.category, difficulty: query.difficulty})
         .then((res) => {
@@ -29,7 +28,7 @@ function QuizPage() {
           }
         })
     }
-  }, []);
+  }, [query.category, query.difficulty, questions?.length]);
 
   const checkAnswer = (e) => {
     const answer = e.currentTarget.value
@@ -53,10 +52,11 @@ function QuizPage() {
   const nextQuestion = () => {
     const nextQuestion = number + 1;
     if (nextQuestion > 10) {
+      console.log(history, {username: username, age: parseInt(query.age), score, date: new Date().toString()})
       if (history) {
-        setHistory([...history, {username: username, age: parseInt(query.age), score, date: new Date().toString()}])
+        localStorage.setItem('history', JSON.stringify([...history, {username: username, age: parseInt(query.age), score, date: new Date().toString()}]))
       } else {
-        setHistory([{username: username, age: parseInt(query.age), score, date: new Date().toString()}])
+        localStorage.setItem('history', JSON.stringify([{username: username, age: parseInt(query.age), score, date: new Date().toString()}]))
       }
       navigate(`/result/${username}/${score}`, { replace: true })
     } else {

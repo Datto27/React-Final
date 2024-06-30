@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { currentDate, formatDate, useLocalStorage } from '../hooks/CustomHooks';
+import React from 'react'
+import { formatDate, useLocalStorage } from '../hooks/CustomHooks';
 
 function HistoryPage() {
   const [history, setHistory] = useLocalStorage('history');
-
-  useEffect(() => {
-    console.log(currentDate())
-  }, []);
 
   return (
     <div className="page">

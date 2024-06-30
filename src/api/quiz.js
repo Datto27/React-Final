@@ -6,7 +6,6 @@ export const fetchQuizQuestions = async ({category, difficulty}) => {
 
   return axios.get(endpoint)
     .then(res => {
-      console.log({res})
       let shuffledQuestions = res.data.results.map((question) => {
         return {
           ...question, 
