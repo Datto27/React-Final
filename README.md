@@ -15,3 +15,15 @@
 /> npm start
 ```
 
+# Structure
+* Route - index.js
+* Pages - /pages
+* Components - /components
+* Custom hooks - /hooks
+* Api Handling - /api
+
+<div style="display: flex; width: 100%; justify-content: space-between">
+  <img src="https://github.com/Datto27/React-Final/blob/main/assets/welcome.png?raw=true" width="33%" title="Welcome">
+  <img src="https://github.com/Datto27/React-Final/blob/main/assets/question.png?raw=true" width="33%" title="Question" >
+  <img src="https://github.com/Datto27/React-Final/blob/main/assets/result.png?raw=true" width="33%" title="Result" >
+</div>
