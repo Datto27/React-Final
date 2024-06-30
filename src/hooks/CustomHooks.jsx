@@ -22,7 +22,7 @@ export const useLocalStorage = (key) => {
   const fetchLocalValue = async () => {
     let json = localStorage.getItem('history');
     localValue.current = await JSON.parse(json);
-    setValue(localValue.current);
+    setValue(localValue.current ?? []);
   }
 
   return [value, setValue];

@@ -18,6 +18,6 @@ export const fetchQuizQuestions = async ({category, difficulty}) => {
     })
     .catch(err => {
       console.error(err);
-      return null;
+      return [];
     })
 }

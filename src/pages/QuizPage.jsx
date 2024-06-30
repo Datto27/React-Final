@@ -10,7 +10,7 @@ function QuizPage() {
   const { username } = useParams();
   const query = useQueryParams();
   const [questions, setQuestions] = useState([]);
-  const [isLoading, setIsLoading] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [number, setNumber] = useState(1);
   const [userAnswers, setUserAnswers] = useState([]);
   const [correctAnswer, setCorrectAnswer] = useState(null);
